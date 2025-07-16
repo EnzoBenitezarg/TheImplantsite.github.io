@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Implant - Contraceptive Method</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%; /* Ensure container takes full width on smaller screens */
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            padding: 2rem 0;
+            text-align: center;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            border-bottom-left-radius: 25px;
+            border-bottom-right-radius: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+            display: inline-block;
+            padding-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            opacity: 0.3;
+        }
+
+        /* Main Content */
+        main {
+            flex-grow: 1; /* Allow main content to grow and fill space */
+            margin: 2rem auto;
+            max-width: 1000px;
+            width: calc(100% - 40px); /* Adjust for padding on smaller screens */
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Main Card Style for each section */
+        .main-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin: 17px 0; /* Adjusted margin for better control with main width */
+            padding: 1.5rem 2rem;
+            border: 1px solid #f0f0f0;
+        }
+
+        .main-card:first-child {
+            margin-top: 0; /* No top margin for the first card within main */
+        }
+
+        .main-card:last-child {
+            margin-bottom: 0; /* No bottom margin for the last card within main */
+        }
+
+        /* Section Titles - Improved CSS with hover/scroll animation */
+        /* General H2 styling for sections that *do* have the animation */
+        .section h2, .intro-content h2, .video-section h2 {
+            font-size: 2rem;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+            /* Removed left and transform for better centering on all screens */
+            white-space: nowrap; /* Prevent text wrapping for the underline effect */
+        }
+
+        .section h2::after, .intro-content h2::after, .video-section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #c0392b;
+            transition: width 0.3s ease-out;
+        }
+
+        .section h2:hover::after, .intro-content h2:hover::after, .video-section h2:hover::after {
+            width: 100%;
+        }
+
+        .section h2.in-viewport::after, .intro-content h2.in-viewport::after, .video-section h2.in-viewport::after {
+            width: 100%;
+        }
+
+        /* Specific H2 styling for "Implant Cost & Availability" - no JS animation */
+        .cost-availability h2 {
+            font-size: 2rem;
+            color: #00796b; /* Specific color for this section */
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            display: block; /* Use block to ensure full width for text-align center */
+            position: relative; /* For potential future pseudo-elements if needed */
+        }
+
+        /* New H3 styling for "How Does The Implant Work?" to match H2 style */
+        .intro-content h3.styled-h3 {
+            font-size: 2rem; /* Match H2 font size */
+            color: #e74c3c; /* Match H2 color */
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 5px;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+            margin-top: 1.5rem; /* Add some space above it */
+        }
+
+        .intro-content h3.styled-h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: #c0392b;
+            transition: width 0.3s ease-out;
+        }
+
+        .intro-content h3.styled-h3:hover::after {
+            width: 100%;
+        }
+
+        .intro-content h3.styled-h3.in-viewport::after {
+            width: 100%;
+        }
+
+
+        .section h3 {
+            font-size: 1.4rem;
+            color: #c0392b;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .section p {
+            font-size: 1.05rem;
+            color: #34495e;
+            margin-bottom: 1rem;
+            text-align: left;
+        }
+
+        /* Intro Section */
+        .intro {
+            background: #f8f8f8;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Changed to single column for stacking */
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .intro-content h2 .fas {
+            margin-right: 10px; /* Space between icon and text */
+        }
+
+        /* Improved Intro Image CSS */
+        .intro-image {
+            order: 1; /* Ensure image comes after text content */
+            margin-top: 1.5rem; /* Add space above the image */
+        }
+
+        .intro-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            border: 3px solid #e74c3c;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+            filter: grayscale(20%);
+            transition: filter 0.3s ease;
+            display: block; /* Remove extra space below image */
+            margin: 0 auto; /* Center image if it doesn't fill grid cell */
+        }
+
+        .intro-image img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Timeline - Distinctive Look */
+        .timeline {
+            background: #e6f7ff;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            border: 2px solid #66b3ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .timeline h3 {
+            color: #007bff;
+            margin-bottom: 1.2rem;
+            font-size: clamp(1.5rem, 5vw, 2rem);
+            border-left: none;
+            padding-left: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .timeline h3 .fas {
+            font-size: 1.8em; /* Make icon slightly larger */
+            color: #0056b3; /* Darker blue for icon */
+        }
+
+        .timeline p {
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
+            color: #34495e;
+            font-weight: bold;
+            margin-bottom: 0.5rem; /* Add some space between paragraphs */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline p .fas {
+            color: #66b3ff; /* Icon color matching border */
+            font-size: 1.1em;
+        }
+        
+        /* Advantages and Disadvantages */
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .pros, .cons {
+            background: #f0f0f0;
+            padding: 1.2rem;
+            border-radius: 15px;
+            border: 2px solid #27ae60;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .cons {
+            background: #ffe0e0;
+            border-color: #e74c3c;
+        }
+
+        .pros h3 {
+            color: #27ae60;
+            margin-bottom: 0.8rem;
+        }
+
+        .cons h3 {
+            color: #e74c3c;
+            margin-bottom: 0.8rem;
+        }
+
+        .pros-list, .cons-list {
+            list-style: none;
+        }
+
+        .pros-list li, .cons-list li {
+            padding: 0.4rem 0;
+            font-size: 1rem;
+            color: #2c3e50;
+            display: flex;
+            align-items: flex-start; /* Align icon and text at the top */
+        }
+
+        .pros-list li .icon-check {
+            color: #27ae60;
+            margin-right: 8px;
+            font-weight: bold;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        .cons-list li .icon-times {
+            color: #e74c3c;
+            margin-right: 8px;
+            font-weight: bold;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+
+        /* Side Effects */
+        .side-effects {
+            background: #fff9e6;
+            border: 2px solid #ffc107;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .side-effects h3 {
+            color: #856404;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .effects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted minmax for better small screen fit */
+            gap: 0.8rem;
+        }
+
+        .effect-item {
+            background: white;
+            padding: 0.8rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #ffc107;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .effect-item h4 {
+            color: #856404;
+            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
+        }
+
+        .effect-item p {
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        /* Video Section - Enhanced for visual appeal and performance */
+        .video-section {
+            background: #f7fafc;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #e9e9e9;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            max-width: 700px;
+            aspect-ratio: 16 / 9;
+            background: #ecf0f1;
+            border-radius: 15px;
+            margin: 0 auto;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.3);
+            border: 3px solid #bdc3c7;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .video-placeholder:hover {
+            transform: scale(1.01);
+        }
+
+        .video-placeholder iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-section h2 {
+            text-align: center;
+            /* Ensure it's centered properly without `left` and `transform` */
+            display: block; /* Make it a block element to center with text-align */
+            white-space: normal; /* Allow wrapping for long titles */
+        }
+
+        .titulo {
+            font-size: 65px;
+        }
+
+        /* Types of Contraceptive Implants - Mejorado */
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .type-item {
+            background: #f0f0f0;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid #c0392b;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .type-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .type-item:hover::before {
+            opacity: 1;
+        }
+
+        .type-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .type-item h3 {
+            color: #e74c3c;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+            border-bottom: 1px dashed #e74c3c;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            z-index: 1;
+            position: relative;
+        }
+
+        .type-item p {
+            font-size: 1.05rem;
+            color: #34495e;
+            margin-bottom: 0;
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        /* Cost & Availability Section */
+        .cost-availability {
+            background: #e0f7fa;
+            border: 2px solid #00bcd4;
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cost-item {
+            background: white;
+            padding: 1.2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cost-item .icon {
+            font-size: 3rem;
+            color: #0097a7;
+            margin-bottom: 0.8rem;
+        }
+
+        .cost-item h3 {
+            color: #00796b;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cost-item p {
+            font-size: 1rem;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) { /* Tablet and smaller desktops */
+            .main-card {
+                padding: 1.2rem 1.5rem;
+            }
+            .intro-grid {
+                grid-template-columns: 1fr; /* Stack intro content and image */
+            }
+            .intro-image {
+                order: 1; /* Place image below text on smaller screens */
+                margin-top: 1.5rem; /* Add space above the image */
+            }
+            .intro-image img {
+                max-width: 80%; /* Make image slightly smaller */
+                margin: 0 auto; /* Center image */
+            }
+        }
+
+        @media (max-width: 768px) { /* Tablets and larger phones */
+            .container {
+                padding: 0 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .main-card {
+                margin: 12px 0;
+                padding: 1rem 1.2rem;
+            }
+
+            .section h2, .intro-content h2, .video-section h2, .cost-availability h2, .intro-content h3.styled-h3 {
+                font-size: 1.8rem;
+                white-space: normal; /* Allow text wrapping on smaller screens */
+                transform: translateX(0); /* Reset transform for better centering */
+                left: auto; /* Reset left property */
+                display: block; /* Ensure it takes full width for text-align center */
+            }
+
+            .section h2::after, .intro-content h2::after, .video-section h2::after, .intro-content h3.styled-h3::after {
+                /* Keep the underline animation, but adjust positioning if needed */
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .section h3 {
+                font-size: 1.3rem;
+            }
+
+            .section p {
+                font-size: 1rem;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .types-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .video-placeholder {
+                height: auto;
+                font-size: 1rem;
+            }
+
+            .side-effects {
+                padding: 1rem;
+            }
+
+            .effects-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Further adjust for smaller screens */
+                gap: 0.6rem;
+            }
+
+            .effect-item {
+                padding: 0.7rem;
+            }
+
+            .effect-item h4 {
+                font-size: 1rem;
+            }
+
+            .effect-item p {
+                font-size: 0.8rem;
+            }
+
+            .cost-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Ensure underline animation works correctly when h2 is block */
+            .section h2.in-viewport::after, .intro-content h2.in-viewport::after, .video-section h2.in-viewport::after, .intro-content h3.styled-h3.in-viewport::after {
+                width: 100%;
+                left: 0; /* Reset left for full width underline */
+                transform: translateX(0); /* Reset transform */
+            }
+        }
+
+        @media (max-width: 480px) { /* Smaller phones */
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .main-card {
+                margin: 8px 0;
+                padding: 0.8rem 1rem;
+            }
+
+            .section h2, .intro-content h2, .video-section h2, .cost-availability h2, .intro-content h3.styled-h3 {
+                font-size: 1.5rem;
+            }
+
+            .section h3 {
+                font-size: 1.1rem;
+            }
+
+            .section p {
+                font-size: 0.9rem;
+            }
+
+            .intro-image img {
+                max-width: 90%;
+            }
+
+            .video-section {
+                padding: 1.5rem 0.8rem;
+            }
+
+            .cost-item .icon {
+                font-size: 2.5rem;
+            }
+            .cost-item h3 {
+                font-size: 1.2rem;
+            }
+            .cost-item p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 320px) { /* Very small phones */
+            .section h2, .intro-content h2, .video-section h2, .cost-availability h2, .intro-content h3.styled-h3 {
+                font-size: 1.3rem;
+            }
+            .section h3 {
+                font-size: 1rem;
+            }
+            .section p {
+                font-size: 0.85rem;
+            }
+            .effect-item h4 {
+                font-size: 0.9rem;
+            }
+            .effect-item p {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1 class="titulo">The Implant</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="main-card intro">
+            <div class="intro-grid">
+                <div class="intro-content">
+                    <h2><i class="fas fa-syringe"></i> What is The Implant?</h2>
+                    <p>The implant is a contraceptive method that consists of a small plastic rod, like a matchstick, that the doctor places under the skin of the upper arm. It prevents pregnancy.</p>
+                    
+                    <h3 class="styled-h3"><i class="fas fa-question-circle"></i> How Does The Implant Work?</h3>
+                    <p>The implant releases a hormone (progestin) that stops ovaries from releasing eggs. It also thickens cervical mucus, blocking sperm.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="nexplanon-1_orig.jpg" alt="Contraceptive Implant" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <section class="main-card video-section">
+            <h2>Watch this video about The Implant</h2>
+            <div class="video-placeholder">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/WGI-bqeaYhU?si=lUx3jupdxRFw7Dx6" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </section>
+
+        <section class="main-card section">
+            <h2>How Long Does The Implant Last?</h2>
+            <div class="timeline">
+                <h3><i class="fas fa-hourglass-half"></i> Implant Duration</h3>
+                <p><i class="fas fa-calendar-alt"></i> Works for <strong>3 years</strong></p>
+                <p><i class="fas fa-sync-alt"></i> Remove or replace after 3 years to continue protection.</p>
+            </div>
+        </section>
+
+        <section class="main-card cost-availability">
+  <h2>Implant Cost & Availability</h2>
+  <div class="cost-grid">
+    
+    <div class="cost-item">
+      <i class="fas fa-dollar-sign icon"></i>
+      <h3>Without Health insurance provider</h3>
+      <p><strong>$380,000 – $537,000 ARS</strong></p>
+      <p>Price may change by pharmacy or city.</p>
+      <p>Doctor and insertion cost not included.</p>
+    </div>
+
+    <div class="cost-item">
+      <i class="fas fa-user-shield icon"></i>
+      <h3>With Health insurance provider</h3>
+      <p><strong>$150,000 – $230,000 ARS</strong></p>
+      <p>Price depends on your health plan.</p>
+      <p>Some plans may cover it 100%.</p>
+    </div>
+
+    <div class="cost-item">
+      <i class="fas fa-hospital icon"></i>
+      <h3>Free in Public System</h3>
+      <p><strong>Free in public hospitals</strong></p>
+      <p>Available with medical request.</p>
+    </div>
+
+  </div>
+</section>
+
+
+        <section class="main-card section">
+            <h2>Good Things and Bad Things about The Implant</h2>
+            <div class="pros-cons">
+                <div class="pros">
+                    <h3>Good Things (Advantages)</h3>
+                    <ul class="pros-list">
+                        <li><i class="fas fa-check icon-check"></i> Very effective (99%)</li>
+                        <li><i class="fas fa-check icon-check"></i> Lasts for 3 years</li>
+                        <li><i class="fas fa-check icon-check"></i> No daily pills to remember</li>
+                    </ul>
+                </div>
+                <div class="cons">
+                    <h3>Bad Things (Disadvantages)</h3>
+                    <ul class="cons-list">
+                        <li><i class="fas fa-times icon-times"></i> Periods might change</li>
+                        <li><i class="fas fa-times icon-times"></i> Doesn't protect from STDs</li>
+                        <li><i class="fas fa-times icon-times"></i> Needs a doctor for insertion</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-card section">
+            <h2>Common Side Effects of The Implant</h2>
+            <div class="side-effects">
+                <h3><i class="fas fa-exclamation-triangle"></i> What Side Effects Might Happen?</h3>
+                <div class="effects-grid">
+                    <div class="effect-item">
+                        <h4><i class="fas fa-tint"></i> Irregular Bleeding</h4>
+                    </div>
+                    <div class="effect-item">
+                        <h4><i class="fas fa-weight"></i> Weight Changes</h4>
+                    </div>
+                    <div class="effect-item">
+                        <h4><i class="fas fa-frown"></i> Mood Changes</h4>
+                    </div>
+                    <div class="effect-item">
+                        <h4><i class="fas fa-female"></i> Breast Pain</h4>
+                    </div>
+                    <div class="effect-item">
+                        <h4><i class="fas fa-crosshairs"></i> Acne</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="main-card section">
+            <h2>Types of Contraceptive Implants</h2>
+            <div class="types-grid">
+                <div class="type-item">
+                    <h3><i class="fas fa-syringe"></i> Implanon/Nexplanon:</h3>
+                    <p>Single rod, etonogestrel, up to 3 years.</p>
+                </div>
+                <div class="type-item">
+                    <h3><i class="fas fa-syringe"></i> Jadelle:</h3>
+                    <p>Two rods, levonorgestrel, up to 5 years.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial section fade-in animation
+            const sections = document.querySelectorAll('.main-card');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+
+            // Intersection Observer for h2 and styled-h3 underline animation on scroll
+            const h2AndH3Elements = document.querySelectorAll('.section h2, .intro-content h2, .video-section h2, .intro-content h3.styled-h3');
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-viewport');
+                    } else {
+                        entry.target.classList.remove('in-viewport');
+                    }
+                });
+            }, observerOptions);
+            h2AndH3Elements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
